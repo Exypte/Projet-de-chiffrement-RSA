@@ -4,8 +4,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Chiffrement.publicKey(11);
-		Chiffrement.privateKey();
-		Chiffrement.dechiffrement(Chiffrement.chiffrement("Bonjour thierry la merguez !", new CouplePublic(new BigInteger("5141"), new BigInteger("7"), new BigInteger("58"))), new CouplePrive(new BigInteger("5141"), new BigInteger("4279")));
+		CouplePublic cp = Chiffrement.publicKey(11);
+		CouplePrive cpp = Chiffrement.privateKey(cp);
+		Chiffrement.dechiffrement(Chiffrement.chiffrement("Bonjour, je m'appel Henry !", cp), cpp);
 	}
 }
