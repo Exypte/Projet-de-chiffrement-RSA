@@ -32,15 +32,16 @@ public class Chiffrement {
 	}
 	
 	public static void privateKey() {
+		BigInteger m = new BigInteger("4992");
 		ArrayList<BigInteger> r = new ArrayList<>();
 		ArrayList<BigInteger> u = new ArrayList<>();
 		ArrayList<BigInteger> v = new ArrayList<>();
 		r.add(new BigInteger("7"));
 		r.add(new BigInteger("4992"));
-		u.add(new BigInteger("0"));
 		u.add(new BigInteger("1"));
-		v.add(new BigInteger("1"));
+		u.add(new BigInteger("0"));
 		v.add(new BigInteger("0"));
+		v.add(new BigInteger("1"));
 		while (r.get(r.size()-1).compareTo(new BigInteger("0"))!=0) {
 			BigInteger ri = r.get(r.size()-1);
 			BigInteger rim1 = r.get(r.size()-2);
@@ -52,9 +53,18 @@ public class Chiffrement {
 			u.add(uim1.subtract(rim1.divide(ri).multiply(ui)));
 			v.add(vim1.subtract(rim1.divide(ri).multiply(vi)));
 		}
+		
+		System.out.println(r.get(r.size()-1));
+		System.out.println(u.get(r.size()-1));
+		System.out.println(v.get(r.size()-1));
+		
 		BigInteger ufinal = u.get(u.size()-2);
-		
-		
+		BigInteger k = new BigInteger("-1");
+		while (!(new BigInteger("2").compareTo(ufinal)==-1 && ufinal.compareTo(m) == -1)){
+			ufinal = ufinal.subtract(k.multiply(m));
+			k = k.subtract(new BigInteger("1"));
+		}
+		System.out.println("ufinal"+ufinal.toString());
 	}
 	
 	public static ArrayList<BigInteger> chiffrement(String message, CouplePublic couple) {
