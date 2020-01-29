@@ -1,5 +1,8 @@
 /Chiffrement.class
 /Main.class
+<<<<<<< HEAD
+/Couple.class
+=======
 /Client.class
 /Serveur.class
 /Client$1.class
@@ -7,3 +10,4 @@
 /Serveur$1.class
 /Serveur$2.class
 /Commandes.class
+>>>>>>> master
