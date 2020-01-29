@@ -3,8 +3,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Chiffrement {
-	public static Couple publicKey(double numBit) {
-		System.out.println("publicKey");
+	public static CouplePublic publicKey(double numBit) {
 		
 		Random random = new Random();
 		
@@ -27,9 +26,7 @@ public class Chiffrement {
 			e = BigInteger.probablePrime((int) Math.pow(2, numBit / 2), random);
 		}
 		
-		Couple c = new Couple(n, e);
-		
-		System.out.println("publicKey Fin");
+		CouplePublic c = new CouplePublic(n, e, m);
 		
 		return c;
 	}
@@ -62,11 +59,27 @@ public class Chiffrement {
 	
 	public static void chiffrement(String message, Couple couple) {
 		ArrayList<Integer> ascii = new ArrayList<Integer>();
+	public static ArrayList<BigInteger> chiffrement(String message, CouplePublic couple) {
+		ArrayList<BigInteger> ascii = new ArrayList<BigInteger>();
 		
 		for(char ch : message.toCharArray()) {
-			ascii.add((int)ch);
+			int ascii_code = (int) ch;
+			ascii.add(new BigInteger(Integer.toString(ascii_code)).modPow(couple.getE(), couple.getN()));
 		}
 		
-		System.out.println(ascii.toString());
+		return ascii;
+	}
+	
+	public static String dechiffrement(ArrayList<BigInteger> message, CouplePrive couple) {
+		
+		String str = new String();
+		
+		for(int i = 0; i < message.size(); i++) {
+			str += (char) message.get(i).modPow(couple.getU(), couple.getN()).intValue();
+		}
+		
+		System.out.println(str);
+		
+		return str;
 	}
 }
