@@ -6,7 +6,6 @@ public class Main {
 		// TODO Auto-generated method stub
 		Chiffrement.publicKey(11);
 		Chiffrement.privateKey();
-		Chiffrement.chiffrement("bonjour", new Couple(new BigInteger("5141"), new BigInteger("7")));
 		Chiffrement.dechiffrement(Chiffrement.chiffrement("Bonjour thierry la merguez !", new CouplePublic(new BigInteger("5141"), new BigInteger("7"), new BigInteger("58"))), new CouplePrive(new BigInteger("5141"), new BigInteger("4279")));
 	}
 }

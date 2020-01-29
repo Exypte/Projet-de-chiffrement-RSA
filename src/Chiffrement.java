@@ -57,8 +57,6 @@ public class Chiffrement {
 		
 	}
 	
-	public static void chiffrement(String message, Couple couple) {
-		ArrayList<Integer> ascii = new ArrayList<Integer>();
 	public static ArrayList<BigInteger> chiffrement(String message, CouplePublic couple) {
 		ArrayList<BigInteger> ascii = new ArrayList<BigInteger>();
 		
