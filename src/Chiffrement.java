@@ -4,7 +4,6 @@ import java.util.Random;
 
 public class Chiffrement {
 	public static CouplePublic publicKey(double numBit) {
-		System.out.println("publicKey");
 		
 		Random random = new Random();
 		
@@ -27,9 +26,7 @@ public class Chiffrement {
 			e = BigInteger.probablePrime((int) Math.pow(2, numBit / 2), random);
 		}
 		
-		CouplePublic c = new CouplePublic(n, e);
-		
-		System.out.println("publicKey Fin");
+		CouplePublic c = new CouplePublic(n, e, m);
 		
 		return c;
 	}
