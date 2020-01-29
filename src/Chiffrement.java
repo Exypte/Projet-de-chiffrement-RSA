@@ -32,8 +32,7 @@ public class Chiffrement {
 		return c;
 	}
 	
-	public static CouplePrive privateKey(CouplePublic couple) {
-
+	private static BigInteger algoEuclideEtendu(CouplePublic couple) {
 		ArrayList<BigInteger> r = new ArrayList<>();
 		ArrayList<BigInteger> u = new ArrayList<>();
 		ArrayList<BigInteger> v = new ArrayList<>();
@@ -54,11 +53,13 @@ public class Chiffrement {
 			u.add(uim1.subtract(rim1.divide(ri).multiply(ui)));
 			v.add(vim1.subtract(rim1.divide(ri).multiply(vi)));
 		}
-		
+		return u.get(u.size()-2);
+	}
+	
+	public static CouplePrive privateKey(CouplePublic couple) {
 		BigInteger m = couple.getM();
-		BigInteger ufinal = u.get(u.size()-2);
+		BigInteger ufinal = algoEuclideEtendu(couple);
 		BigInteger k = new BigInteger("-1");
-		
 		while (!(new BigInteger("2").compareTo(ufinal)==-1 && ufinal.compareTo(m) == -1)){
 			ufinal = ufinal.subtract(k.multiply(m));
 			k = k.subtract(new BigInteger("1"));
