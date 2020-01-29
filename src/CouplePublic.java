@@ -1,10 +1,10 @@
 import java.math.BigInteger;
 
-public class Couple {
+public class CouplePublic {
 	private BigInteger n;
 	private BigInteger e;
 	
-	public Couple(BigInteger n, BigInteger e) {
+	public CouplePublic(BigInteger n, BigInteger e) {
 		super();
 		this.n = n;
 		this.e = e;
