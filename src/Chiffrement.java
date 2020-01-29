@@ -1,4 +1,5 @@
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Chiffrement {
@@ -31,5 +32,15 @@ public class Chiffrement {
 		System.out.println("publicKey Fin");
 		
 		return c;
+	}
+	
+	public static void chiffrement(String message, Couple couple) {
+		ArrayList<Integer> ascii = new ArrayList<Integer>();
+		
+		for(char ch : message.toCharArray()) {
+			ascii.add((int)ch);
+		}
+		
+		System.out.println(ascii.toString());
 	}
 }
