@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Chiffrement {
+	
 	public static CouplePublic publicKey(double numBit) {
 		
 		Random random = new Random();
@@ -31,13 +32,13 @@ public class Chiffrement {
 		return c;
 	}
 	
-	public static void privateKey() {
-		BigInteger m = new BigInteger("4992");
+	public static CouplePrive privateKey(CouplePublic couple) {
+
 		ArrayList<BigInteger> r = new ArrayList<>();
 		ArrayList<BigInteger> u = new ArrayList<>();
 		ArrayList<BigInteger> v = new ArrayList<>();
-		r.add(new BigInteger("7"));
-		r.add(new BigInteger("4992"));
+		r.add(couple.getE());
+		r.add(couple.getM());
 		u.add(new BigInteger("1"));
 		u.add(new BigInteger("0"));
 		v.add(new BigInteger("0"));
@@ -54,17 +55,16 @@ public class Chiffrement {
 			v.add(vim1.subtract(rim1.divide(ri).multiply(vi)));
 		}
 		
-		System.out.println(r.get(r.size()-1));
-		System.out.println(u.get(r.size()-1));
-		System.out.println(v.get(r.size()-1));
-		
+		BigInteger m = couple.getM();
 		BigInteger ufinal = u.get(u.size()-2);
 		BigInteger k = new BigInteger("-1");
+		
 		while (!(new BigInteger("2").compareTo(ufinal)==-1 && ufinal.compareTo(m) == -1)){
 			ufinal = ufinal.subtract(k.multiply(m));
 			k = k.subtract(new BigInteger("1"));
 		}
-		System.out.println("ufinal"+ufinal.toString());
+
+		return new CouplePrive(couple.getN(), ufinal);
 	}
 	
 	public static ArrayList<BigInteger> chiffrement(String message, CouplePublic couple) {
