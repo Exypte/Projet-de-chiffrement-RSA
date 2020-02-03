@@ -86,8 +86,6 @@ public class Chiffrement {
 			str += (char) message.get(i).modPow(couple.getU(), couple.getN()).intValue();
 		}
 		
-		System.out.println(str);
-		
 		return str;
 	}
 }
